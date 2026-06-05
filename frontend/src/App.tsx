@@ -1,83 +1,34 @@
-type Action = {
-  id: number;
-  label: string;
-  description: string;
-};
-
-const actions: Action[] = [
-  {
-    id: 1,
-    label: "Initialize",
-    description: "Creates the counter account once backend wiring is ready.",
-  },
-  {
-    id: 2,
-    label: "Increment",
-    description: "Sends an increment instruction through the backend.",
-  },
-  {
-    id: 3,
-    label: "Decrement",
-    description: "Sends a decrement instruction through the backend.",
-  },
-];
-
 export default function App() {
   return (
-    <main className="app-shell">
-      <section className="hero-panel" aria-labelledby="app-title">
-        <div className="eyebrow">Anchor Counter</div>
-        <div className="hero-grid">
-          <div className="copy-block">
-            <h1 id="app-title">Counter Anchor</h1>
-            <p>
-              A clean frontend shell for the Anchor counter program. Live
-              values and instructions are paused until the backend connection is
-              added.
-            </p>
-          </div>
+    <main className="flex min-h-svh flex-col items-center justify-center px-4">
+      {/* pill label */}
+      <span className="neo-pill mb-6">Anchor Counter</span>
 
-          <div className="counter-card" aria-live="polite">
-            <span className="card-label">Current Count</span>
-            <strong>--</strong>
-            <p>No backend data connected</p>
-          </div>
-        </div>
-      </section>
+      {/* the number */}
+      <div
+        className="neo-surface counter-box flex items-center justify-center"
+        aria-live="polite"
+      >
+        <span className="counter-value select-none">--</span>
+      </div>
 
-      <section className="control-grid" aria-label="Counter controls">
-        <div className="action-panel">
-          <h2>Instructions</h2>
-          <p className="panel-copy">
-            These actions are disabled so the UI cannot pretend to update data
-            before the backend is connected.
-          </p>
-          <div className="instruction-list">
-            {actions.map((action) => (
-              <article className="instruction-item" key={action.id}>
-                <div>
-                  <span>{String(action.id).padStart(2, "0")}</span>
-                  <h3>{action.label}</h3>
-                  <p>{action.description}</p>
-                </div>
-                <button className="primary-button" type="button" disabled>
-                  Pending
-                </button>
-              </article>
-            ))}
-          </div>
-        </div>
+      {/* tagline */}
+      <p className="mt-5 max-w-[36ch] text-center font-mono text-sm font-bold uppercase leading-relaxed tracking-wide opacity-80">
+        On-chain counter built with Anchor on Solana.
+      </p>
 
-        <aside className="status-panel">
-          <span className="card-label">Backend Status</span>
-          <p>Disconnected</p>
-          <small>
-            Connect the backend or wallet transaction layer before showing count
-            data here.
-          </small>
-          <code>Program: Counter_Anchor_contract</code>
-        </aside>
-      </section>
+      {/* buttons */}
+      <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+        <button className="neo-btn neo-btn--init" disabled>
+          Initialize
+        </button>
+        <button className="neo-btn neo-btn--dec" disabled>
+          &minus;
+        </button>
+        <button className="neo-btn neo-btn--inc" disabled>
+          +
+        </button>
+      </div>
     </main>
   );
 }

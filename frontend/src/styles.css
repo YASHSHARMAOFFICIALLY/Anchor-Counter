@@ -1,296 +1,118 @@
-:root {
-  color: #16201b;
-  background:
-    radial-gradient(circle at top left, rgba(18, 117, 92, 0.16), transparent 34rem),
-    linear-gradient(135deg, #f8fbf7 0%, #eef6f1 48%, #f9f4e8 100%);
-  font-family:
-    "Inter", "Avenir Next", "Segoe UI", ui-sans-serif, system-ui, -apple-system,
-    BlinkMacSystemFont, sans-serif;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import "tailwindcss";
+
+/* ── fonts ── */
+@import url("https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Space+Mono:wght@700&display=swap");
+
+@theme {
+  --font-sans: "Syne", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Space Mono", "SFMono-Regular", Consolas, monospace;
 }
 
-* {
-  box-sizing: border-box;
-}
+/* ── base ── */
+@layer base {
+  :root {
+    color: #111;
+    background: #f7f047;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 
-body {
-  min-width: 320px;
-  min-height: 100vh;
-  margin: 0;
-}
+  * {
+    box-sizing: border-box;
+  }
 
-button {
-  font: inherit;
-}
-
-.app-shell {
-  width: min(1160px, calc(100% - 32px));
-  min-height: 100vh;
-  margin: 0 auto;
-  padding: 40px 0;
-}
-
-.hero-panel,
-.action-panel,
-.status-panel,
-.counter-card {
-  border: 1px solid rgba(22, 32, 27, 0.12);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.78);
-  box-shadow: 0 22px 70px rgba(22, 32, 27, 0.12);
-  backdrop-filter: blur(18px);
-}
-
-.hero-panel {
-  overflow: hidden;
-  padding: 32px;
-  position: relative;
-}
-
-.hero-panel::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-top: 4px solid #12755c;
-  pointer-events: none;
-}
-
-.eyebrow,
-.card-label {
-  display: inline-flex;
-  align-items: center;
-  min-height: 28px;
-  width: fit-content;
-  margin-bottom: 12px;
-  border: 1px solid rgba(18, 117, 92, 0.2);
-  border-radius: 999px;
-  background: #e5f4ec;
-  color: #0d5d49;
-  padding: 5px 10px;
-  font-size: 0.76rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.hero-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(250px, 340px);
-  gap: 32px;
-  align-items: stretch;
-}
-
-.copy-block h1 {
-  max-width: 11ch;
-  margin: 0;
-  color: #12231d;
-  font-size: clamp(3.1rem, 9vw, 6.2rem);
-  font-weight: 900;
-  line-height: 0.92;
-  letter-spacing: 0;
-}
-
-.copy-block p {
-  max-width: 60ch;
-  margin: 20px 0 0;
-  color: #415149;
-  font-size: 1.08rem;
-  font-weight: 550;
-  line-height: 1.65;
-}
-
-.counter-card {
-  display: flex;
-  min-height: 220px;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 24px;
-  background: linear-gradient(160deg, #14382d 0%, #12755c 100%);
-  color: #f7fff9;
-}
-
-.counter-card strong {
-  font-size: clamp(4.8rem, 15vw, 8rem);
-  font-weight: 900;
-  line-height: 0.8;
-}
-
-.counter-card p {
-  margin: 0;
-  color: #c8f2dc;
-  font-size: 0.95rem;
-  font-weight: 700;
-}
-
-.counter-card .card-label {
-  border-color: rgba(247, 255, 249, 0.22);
-  background: rgba(247, 255, 249, 0.12);
-  color: #eafff1;
-}
-
-.control-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(270px, 360px);
-  gap: 24px;
-  margin-top: 28px;
-}
-
-.action-panel,
-.status-panel {
-  padding: 24px;
-}
-
-.action-panel h2 {
-  margin: 0;
-  color: #12231d;
-  font-size: clamp(1.6rem, 4vw, 2.35rem);
-  line-height: 1.05;
-}
-
-.panel-copy {
-  max-width: 62ch;
-  margin: 10px 0 22px;
-  color: #5e6d65;
-  font-size: 0.98rem;
-  font-weight: 520;
-  line-height: 1.6;
-}
-
-.instruction-list {
-  display: grid;
-  gap: 12px;
-}
-
-.instruction-item {
-  display: flex;
-  min-height: 108px;
-  align-items: center;
-  justify-content: space-between;
-  gap: 18px;
-  border: 1px solid rgba(22, 32, 27, 0.1);
-  border-radius: 8px;
-  background: #fbfdf9;
-  padding: 16px;
-}
-
-.instruction-item span {
-  display: block;
-  margin-bottom: 8px;
-  color: #12755c;
-  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
-  font-size: 0.8rem;
-  font-weight: 800;
-}
-
-.instruction-item h3 {
-  margin: 0;
-  color: #17231e;
-  font-size: 1.08rem;
-  line-height: 1.2;
-}
-
-.instruction-item p {
-  max-width: 48ch;
-  margin: 6px 0 0;
-  color: #63736b;
-  font-size: 0.92rem;
-  line-height: 1.5;
-}
-
-.primary-button {
-  min-height: 44px;
-  min-width: 104px;
-  border: 1px solid rgba(22, 32, 27, 0.14);
-  border-radius: 8px;
-  background: #d9e5df;
-  color: #627269;
-  cursor: not-allowed;
-  font-size: 0.92rem;
-  font-weight: 800;
-  padding: 10px 14px;
-  transition:
-    border-color 120ms ease,
-    background-color 120ms ease;
-}
-
-.primary-button:focus-visible {
-  outline: 3px solid #12755c;
-  outline-offset: 3px;
-}
-
-.status-panel {
-  background: #17231e;
-  color: #f5fbf6;
-}
-
-.status-panel .card-label {
-  border-color: rgba(242, 191, 87, 0.24);
-  background: rgba(242, 191, 87, 0.12);
-  color: #f7d999;
-}
-
-.status-panel p {
-  margin: 0 0 10px;
-  font-size: 1.5rem;
-  font-weight: 850;
-  line-height: 1.25;
-}
-
-.status-panel small {
-  display: block;
-  margin-bottom: 24px;
-  color: #c3d4ca;
-  font-size: 0.95rem;
-  font-weight: 520;
-  line-height: 1.55;
-}
-
-.status-panel code {
-  display: block;
-  overflow-wrap: anywhere;
-  border: 1px solid rgba(245, 251, 246, 0.18);
-  border-radius: 8px;
-  background: rgba(245, 251, 246, 0.08);
-  padding: 12px;
-  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
-  font-size: 0.85rem;
-  line-height: 1.5;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .primary-button {
-    transition: none;
+  body {
+    margin: 0;
+    min-width: 320px;
+    min-height: 100vh;
+    font-family: var(--font-sans);
   }
 }
 
-@media (max-width: 760px) {
-  .app-shell {
-    width: min(100% - 20px, 1120px);
-    padding: 20px 0;
+/* ── neo-brutalist tokens ── */
+@layer components {
+  .neo-surface {
+    border: 4px solid #111;
+    background: #fffdf1;
+    box-shadow: 8px 8px 0 #111;
   }
 
-  .hero-panel {
-    padding: 18px;
+  .neo-pill {
+    display: inline-block;
+    border: 3px solid #111;
+    background: #ff6bcb;
+    padding: 6px 14px;
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #111;
   }
 
-  .hero-grid,
-  .control-grid {
-    grid-template-columns: 1fr;
+  /* ── counter box ── */
+  .counter-box {
+    width: min(420px, 90vw);
+    aspect-ratio: 16 / 9;
+    background: #7df9a6;
+    transition: transform 0.15s ease;
+  }
+  .counter-box:active {
+    transform: translate(4px, 4px);
+    box-shadow: 4px 4px 0 #111;
   }
 
-  .copy-block h1 {
-    max-width: 9ch;
+  .counter-value {
+    font-family: var(--font-mono);
+    font-size: clamp(5rem, 18vw, 10rem);
+    font-weight: 700;
+    line-height: 1;
+    color: #111;
   }
 
-  .instruction-item {
-    align-items: stretch;
-    flex-direction: column;
+  /* ── buttons ── */
+  .neo-btn {
+    border: 3px solid #111;
+    padding: 14px 36px;
+    font-family: var(--font-sans);
+    font-size: 1.1rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #111;
+    cursor: pointer;
+    box-shadow: 5px 5px 0 #111;
+    transition:
+      transform 0.1s ease,
+      box-shadow 0.1s ease;
+  }
+  .neo-btn:not(:disabled):hover {
+    transform: translate(2px, 2px);
+    box-shadow: 3px 3px 0 #111;
+  }
+  .neo-btn:not(:disabled):active {
+    transform: translate(5px, 5px);
+    box-shadow: 0 0 0 #111;
+  }
+  .neo-btn:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
   }
 
-  .primary-button {
-    width: 100%;
+  .neo-btn--init {
+    background: #7cc9ff;
+    min-width: 200px;
+  }
+  .neo-btn--inc {
+    background: #7df9a6;
+    min-width: 100px;
+    font-size: 1.6rem;
+  }
+  .neo-btn--dec {
+    background: #ff6bcb;
+    min-width: 100px;
+    font-size: 1.6rem;
   }
 }
