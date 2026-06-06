@@ -3,7 +3,7 @@ import { useConnection, useAnchorWallet } from "@solana/wallet-adapter-react";
 import idl from "./idl/backend.json";
 import { Program, AnchorProvider, BN } from "@coral-xyz/anchor";
 import { useCallback, useEffect, useState } from "react";
-import { Keypair, PublicKey, SystemProgram } from "@solana/web3.js";
+import { Keypair } from "@solana/web3.js";
 
 const COUNTER_KEY = "counter_keypair";
 
@@ -47,6 +47,12 @@ export default function App() {
     fetchCount();
   }, [fetchCount]);
 
+  const logError = (label: string, err: unknown) => {
+    const e = err as any;
+    console.error(`${label}:`, e?.message ?? String(e));
+    if (e?.logs?.length) console.error("Transaction logs:", e.logs);
+  };
+
   const handleInitialize = async () => {
     const program = getProgram();
     if (!program || !wallet) return;
@@ -57,13 +63,12 @@ export default function App() {
         .accounts({
           user: wallet.publicKey,
           counter: counterKeypair.publicKey,
-          systemProgram: SystemProgram.programId,
         })
         .signers([counterKeypair])
         .rpc();
       await fetchCount();
     } catch (err) {
-      console.error("Initialize failed:", err);
+      logError("Initialize failed", err);
     } finally {
       setLoading(false);
     }
@@ -83,7 +88,7 @@ export default function App() {
         .rpc();
       await fetchCount();
     } catch (err) {
-      console.error("Increment failed:", err);
+      logError("Increment failed", err);
     } finally {
       setLoading(false);
     }
@@ -103,7 +108,7 @@ export default function App() {
         .rpc();
       await fetchCount();
     } catch (err) {
-      console.error("Decrement failed:", err);
+      logError("Decrement failed", err);
     } finally {
       setLoading(false);
     }
